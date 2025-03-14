@@ -2,10 +2,22 @@
 
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
+@plugin "daisyui" {
+  themes: valentine --default;
+}
 
 
 @theme {
   /* Her tilføjes theme variable // tokens */
+  --font-display: 'Cherry Bomb One', sans-serif;
+  /*Infinite scroll animation*/
+	--animate-infinite-scroll: infinite-scroll 20s linear infinite;  
+
+	@keyframes infinite-scroll {    
+	from { transform: translateX(0);}    
+	to { transform: translateX(-100%);}  
+	}
+
 }
 
 @layer base {
@@ -41,3 +53,53 @@
 @layer utilities{
   
 }
+body{
+  min-height: 100vh;
+  }
+  .cursor {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    z-index: 111;
+    border: 2px solid #C5005A;
+    transition: all 0.2s ease-out;
+    animation: moveCursor1 .5s infinite alternate;
+  }
+  
+  .expand {
+    background: transparent;
+    animation: moveCursor2 .5s forwards;
+    border: 1px solid rgb(255, 0, 25);
+  }
+  
+  @keyframes moveCursor1 {
+    from {
+        transform: scale(1);
+    }
+  
+    to {
+        transform: scale(.8);
+    }
+  }
+  
+  @keyframes moveCursor2 {
+    0% {
+        transform: scale(1);
+    }
+  
+    50% {
+        transform: scale(2.5);
+    }
+  
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+  }
